@@ -17,6 +17,10 @@ import java.util.UUID;
  * @date 2018/08/04 06:23.
  */
 public class ClientHandler extends ChannelInboundHandlerAdapter {
+    /**
+     * 在客户端连接上服务端之后，立即登录
+     * @param ctx
+     */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
         System.out.println(new Date() + ": 客户端开始登录");
