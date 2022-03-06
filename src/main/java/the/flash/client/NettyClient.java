@@ -32,6 +32,7 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     public void initChannel(SocketChannel ch) {
+                        // 添加一个逻辑处理器，这个处理器的作用就是负责向服务端写数据
                         ch.pipeline().addLast(new FirstClientHandler());
                     }
                 });
