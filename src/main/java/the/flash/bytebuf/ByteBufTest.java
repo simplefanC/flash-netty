@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBufAllocator;
 
 public class ByteBufTest {
     public static void main(String[] args) {
+        // capacity, maxCapacity
         ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer(9, 100);
 
         print("allocate ByteBuf(9, 100)", buffer);
@@ -21,7 +22,7 @@ public class ByteBufTest {
         buffer.writeBytes(new byte[]{5});
         print("writeBytes(5)", buffer);
 
-        // write 方法改变写指针，写的时候发现 buffer 不可写则开始扩容，扩容之后 capacity 随即改变
+        // write 方法改变写指针，写的时候发现 buffer 不可写则开始扩容，扩容之后 capacity 随即改变 = 64
         buffer.writeBytes(new byte[]{6});
         print("writeBytes(6)", buffer);
 
