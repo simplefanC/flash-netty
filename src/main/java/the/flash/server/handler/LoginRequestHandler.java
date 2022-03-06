@@ -10,6 +10,11 @@ import java.util.Date;
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket loginRequestPacket) {
+        // 登录响应
+        ctx.channel().writeAndFlush(login(loginRequestPacket));
+    }
+
+    private LoginResponsePacket login(LoginRequestPacket loginRequestPacket) {
         System.out.println(new Date() + ": 收到客户端登录请求……");
 
         LoginResponsePacket loginResponsePacket = new LoginResponsePacket();
@@ -22,9 +27,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
             loginResponsePacket.setSuccess(false);
             System.out.println(new Date() + ": 登录失败!");
         }
-
-        // 登录响应
-        ctx.channel().writeAndFlush(loginResponsePacket);
+        return loginResponsePacket;
     }
 
     private boolean valid(LoginRequestPacket loginRequestPacket) {
