@@ -66,6 +66,10 @@ public class NettyClient {
         });
     }
 
+    /**
+     * 连接成功之后，启动控制台线程
+     * @param channel
+     */
     private static void startConsoleThread(Channel channel) {
         new Thread(() -> {
             while (!Thread.interrupted()) {
