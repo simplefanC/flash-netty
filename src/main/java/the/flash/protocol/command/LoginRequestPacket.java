@@ -4,6 +4,9 @@ import lombok.Data;
 
 import static the.flash.protocol.command.Command.LOGIN_REQUEST;
 
+/**
+ * 登录请求数据包
+ */
 @Data
 public class LoginRequestPacket extends Packet {
     private Integer userId;

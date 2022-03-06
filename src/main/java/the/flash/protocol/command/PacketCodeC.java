@@ -10,6 +10,7 @@ import java.util.Map;
 
 import static the.flash.protocol.command.Command.LOGIN_REQUEST;
 
+
 public class PacketCodeC {
 
     private static final int MAGIC_NUMBER = 0x12345678;
@@ -18,14 +19,21 @@ public class PacketCodeC {
 
     static {
         packetTypeMap = new HashMap<>();
+        // 1 -> LoginRequestPacket
         packetTypeMap.put(LOGIN_REQUEST, LoginRequestPacket.class);
 
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
+        // 1 -> JSONSerializer
         serializerMap.put(serializer.getSerializerAlogrithm(), serializer);
     }
 
-
+    /**
+     * 编码：封装成二进制的过程
+     *
+     * @param packet
+     * @return
+     */
     public ByteBuf encode(Packet packet) {
         // 1. 创建 ByteBuf 对象
         ByteBuf byteBuf = ByteBufAllocator.DEFAULT.ioBuffer();
@@ -44,6 +52,12 @@ public class PacketCodeC {
     }
 
 
+    /**
+     * 解码：解析 Java 对象的过程
+     *
+     * @param byteBuf
+     * @return
+     */
     public Packet decode(ByteBuf byteBuf) {
         // 跳过 magic number
         byteBuf.skipBytes(4);
