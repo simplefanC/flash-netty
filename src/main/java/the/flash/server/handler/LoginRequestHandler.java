@@ -8,6 +8,14 @@ import the.flash.protocol.response.LoginResponsePacket;
 import java.util.Date;
 
 public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginRequestPacket> {
+    /**
+     * 我们不用再通过 if 逻辑来判断当前对象是否是本 handler 可以处理的对象，也不用强转
+     * 不用往下传递本 handler 处理不了的对象
+     * 这一切都已经交给父类 SimpleChannelInboundHandler 来实现了，我们只需要专注于我们要处理的业务逻辑即可
+     *
+     * @param ctx
+     * @param loginRequestPacket
+     */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, LoginRequestPacket loginRequestPacket) {
         // 登录响应

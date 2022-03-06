@@ -31,9 +31,11 @@ public class NettyServer {
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     @Override
                     protected void initChannel(NioSocketChannel ch) {
+                        // 当我们收到数据之后，首先要做的事情就是把二进制数据转换到我们的一个 Java 对象
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginRequestHandler());
                         ch.pipeline().addLast(new MessageRequestHandler());
+                        // 我们处理每一种指令完成之后的逻辑是类似的，都需要进行编码，然后调用 writeAndFlush() 将数据写到客户端
                         ch.pipeline().addLast(new PacketEncoder());
                     }
                 });
