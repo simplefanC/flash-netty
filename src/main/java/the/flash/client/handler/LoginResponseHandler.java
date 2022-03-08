@@ -19,7 +19,7 @@ public class LoginResponseHandler extends SimpleChannelInboundHandler<LoginRespo
         loginRequestPacket.setUsername("flash");
         loginRequestPacket.setPassword("pwd");
 
-        // 写数据
+        // 登录的逻辑
         ctx.channel().writeAndFlush(loginRequestPacket);
     }
 
