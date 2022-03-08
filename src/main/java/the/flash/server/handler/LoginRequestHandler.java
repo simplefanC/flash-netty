@@ -23,6 +23,7 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
             String userId = randomUserId();
             loginResponsePacket.setUserId(userId);
             System.out.println("[" + loginRequestPacket.getUserName() + "]登录成功");
+            // 保存 Session
             SessionUtil.bindSession(new Session(userId, loginRequestPacket.getUserName()), ctx.channel());
         } else {
             loginResponsePacket.setReason("账号密码校验失败");
@@ -42,6 +43,11 @@ public class LoginRequestHandler extends SimpleChannelInboundHandler<LoginReques
         return UUID.randomUUID().toString().split("-")[0];
     }
 
+    /**
+     * 用户断线之后取消绑定
+     *
+     * @param ctx
+     */
     @Override
     public void channelInactive(ChannelHandlerContext ctx) {
         SessionUtil.unBindSession(ctx.channel());

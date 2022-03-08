@@ -6,7 +6,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class Session {
-    // 用户唯一性标识
+    /**
+     * 用户唯一性标识
+     */
     private String userId;
     private String userName;
 

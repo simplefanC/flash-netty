@@ -10,8 +10,15 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SessionUtil {
     private static final Map<String, Channel> userIdChannelMap = new ConcurrentHashMap<>();
 
+    /**
+     * useId -> channel
+     *
+     * @param session
+     * @param channel
+     */
     public static void bindSession(Session session, Channel channel) {
         userIdChannelMap.put(session.getUserId(), channel);
+        // 给 channel 附上了一个属性：当前用户的 Session
         channel.attr(Attributes.SESSION).set(session);
     }
 

@@ -8,6 +8,9 @@ import the.flash.protocol.response.MessageResponsePacket;
 import the.flash.session.Session;
 import the.flash.util.SessionUtil;
 
+/**
+ * 服务端接收消息并转发的实现
+ */
 public class MessageRequestHandler extends SimpleChannelInboundHandler<MessageRequestPacket> {
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, MessageRequestPacket messageRequestPacket) {
