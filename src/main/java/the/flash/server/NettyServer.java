@@ -9,6 +9,7 @@ import io.netty.channel.socket.nio.NioSocketChannel;
 import the.flash.codec.PacketDecoder;
 import the.flash.codec.PacketEncoder;
 import the.flash.codec.Spliter;
+import the.flash.server.handler.FirstServerHandler;
 import the.flash.server.handler.LoginRequestHandler;
 import the.flash.server.handler.MessageRequestHandler;
 
@@ -30,8 +31,10 @@ public class NettyServer {
                 .childOption(ChannelOption.SO_KEEPALIVE, true)
                 .childOption(ChannelOption.TCP_NODELAY, true)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                    @Override
                     protected void initChannel(NioSocketChannel ch) {
 //                        ch.pipeline().addLast(new FirstServerHandler());
+                        // 在后续 PacketDecoder 进行 decode 操作的时候，ByteBuf 就是一个完整的自定义协议数据包
                         ch.pipeline().addLast(new Spliter());
                         ch.pipeline().addLast(new PacketDecoder());
                         ch.pipeline().addLast(new LoginRequestHandler());

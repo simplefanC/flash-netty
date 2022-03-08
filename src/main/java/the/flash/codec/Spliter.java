@@ -13,6 +13,14 @@ public class Spliter extends LengthFieldBasedFrameDecoder {
         super(Integer.MAX_VALUE, LENGTH_FIELD_OFFSET, LENGTH_FIELD_LENGTH);
     }
 
+    /**
+     * 拒绝非本协议连接
+     *
+     * @param ctx
+     * @param in 每次传递进来的时候，均为一个数据包的开头
+     * @return
+     * @throws Exception
+     */
     @Override
     protected Object decode(ChannelHandlerContext ctx, ByteBuf in) throws Exception {
         if (in.getInt(in.readerIndex()) != PacketCodeC.MAGIC_NUMBER) {
