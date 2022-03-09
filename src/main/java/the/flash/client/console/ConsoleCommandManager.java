@@ -6,7 +6,9 @@ import the.flash.util.SessionUtil;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
+/**
+ * 控制台命令管理器
+ */
 public class ConsoleCommandManager implements ConsoleCommand {
     private Map<String, ConsoleCommand> consoleCommandMap;
 

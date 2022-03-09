@@ -20,6 +20,7 @@ public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<Creat
 
         List<String> userNameList = new ArrayList<>();
         // 1. 创建一个 channel 分组
+        // ChannelGroup 可以把多个 chanel 的操作聚合在一起，可以往它里面添加删除 channel，可以进行 channel 的批量读写，关闭等操作
         ChannelGroup channelGroup = new DefaultChannelGroup(ctx.executor());
 
         // 2. 筛选出待加入群聊的用户的 channel 和 userName
