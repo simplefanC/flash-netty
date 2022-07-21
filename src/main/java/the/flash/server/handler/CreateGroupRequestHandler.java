@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ChannelHandler.Sharable
-public class CreateGroupRequestHandler extends SimpleChannelInboundHandler<CreateGroupRequestPacket> {
+public final class CreateGroupRequestHandler extends SimpleChannelInboundHandler<CreateGroupRequestPacket> {
     public static final CreateGroupRequestHandler INSTANCE = new CreateGroupRequestHandler();
 
     private CreateGroupRequestHandler() {

@@ -6,7 +6,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import the.flash.util.SessionUtil;
 
 @ChannelHandler.Sharable
-public class AuthHandler extends ChannelInboundHandlerAdapter {
+public final class AuthHandler extends ChannelInboundHandlerAdapter {
     public static final AuthHandler INSTANCE = new AuthHandler();
 
     private AuthHandler() {
