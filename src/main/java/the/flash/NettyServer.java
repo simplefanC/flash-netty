@@ -43,6 +43,7 @@ public class NettyServer {
                 // 定义后续每条连接的数据读写，业务处理逻辑
                 // NioSocketChannel: Netty 对 NIO 类型的连接的抽象(类比Socket)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
+                    @Override
                     protected void initChannel(NioSocketChannel ch) {
                         System.out.println(ch.attr(clientKey).get());
                     }
